@@ -1,0 +1,29 @@
+<%# For Individual User Page %>
+
+<% provide(:title, @user.name) %>
+<div class="row">
+  <section>
+    <h1>
+      <%= gravatar_for @user %>
+      <%= @user.username %>
+    </h1>
+    <h2>
+      <div><%= @user.name %></div>
+      <div><%= time_ago_in_words(@user.dob) %> old</div>
+      <div><%= @user.zip.to_region %></div>
+    </h2>      
+  </section>
+  <section>
+    <%= render 'shared/stats' %>
+  </section>
+  <section>
+    <%= render 'follow_form' if signed_in? %>
+    <% if @user.microposts.any? %>
+      <h3>MicroFAVES (<%= @user.microposts.count %>)</h3>
+      <ol class="microfaves">
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+  </section>
+</div>

@@ -1,0 +1,13 @@
+<%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <section>
+      <%= f.text_field :item, placeholder: "What's your current obsession?", :maxlength => 50, :autocomplete => "off" %>
+      <%= f.collection_select :category, Article::TYPES, :to_s, :to_s, :prompt => "What is it?", :include_blank => false %>
+    </section>
+    <section>
+    <%= f.text_area :content, placeholder: "Tell us about it!", :maxlength => 260 %>
+    </section>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

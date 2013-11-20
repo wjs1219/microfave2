@@ -1,0 +1,8 @@
+<% if @feed_items.any? %>
+  <section>
+    <ol class="microfaves">
+      <%= render partial: 'shared/feed_item', collection: @feed_items %>
+    </ol>
+    <%= will_paginate @feed_items %>
+  </section>
+<% end %>
